@@ -1,0 +1,31 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color white
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+drawable slogo
+drawable suareceita
+drawable teladois
+id Button1
+id Text2
+id bg
+id main
+layout activity_main
+layout activity_tela2
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+string button
+string entrar
+string gcm_defaultSenderId
+string google_api_key
+string google_app_id
+string google_crash_reporting_api_key
+string google_storage_bucket
+string project_id
+string todo
+style Base.Theme.Receitas
+style Theme.Receitas
+xml backup_rules
+xml data_extraction_rules

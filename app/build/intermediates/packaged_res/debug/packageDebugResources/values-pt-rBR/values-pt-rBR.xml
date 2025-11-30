@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Receitas</string>
+    <string name="button">Button</string>
+    <string name="entrar">ENTRAR</string>
+    <string name="todo">TODO</string>
+</resources>
