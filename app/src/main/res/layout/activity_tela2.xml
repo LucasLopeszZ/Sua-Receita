@@ -1,28 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/teladois">
+    android:fillViewport="true">
 
-
-    <EditText
-        android:id="@+id/Text2"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginEnd="30dp"
-        android:backgroundTint="#FFFFFF"
-        android:ems="15"
-        android:inputType="text"
-        android:text="Ingredientes"
-        android:textColor="#000000"
+        android:background="@color/white"
+        tools:context=".tela2">
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="34dp"
+            android:layout_height="36dp"
+            app:srcCompat="@mipmap/sopasss"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="184dp"/>
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.221" />
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="262dp"
+            android:layout_height="150dp"
+            app:srcCompat="@drawable/sem"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_marginTop="80dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textEscolha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Escolha uma Opção:"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="200dp"
+            android:layout_marginStart="8dp"/>
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollButtons"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fillViewport="false"
+            app:layout_constraintTop_toBottomOf="@id/textEscolha"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="75dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginEnd="10dp">
+
+                <Button
+                    android:id="@+id/meus_ingredientes"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginEnd="10dp"
+                    android:backgroundTint="#D8E74C"
+                    android:text="Meus Ingredientes"
+                    android:textColor="@color/black"
+                    app:cornerRadius="10dp"/>
+
+                <Button
+                    android:id="@+id/escolha"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:backgroundTint="#D8E74C"
+                    android:layout_marginEnd="10dp"
+                    android:text="Escolher Receita"
+                    android:textColor="@color/black"
+                    app:cornerRadius="10dp"/>
+
+                <Button
+                    android:id="@+id/recomendadas"
+                    android:layout_width="210dp"
+                    android:layout_height="200dp"
+                    android:layout_marginEnd="10dp"
+                    android:backgroundTint="#D8E74C"
+                    android:text="Receitas Recomendadas"
+                    android:textColor="@color/black"
+                    app:cornerRadius="10dp" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

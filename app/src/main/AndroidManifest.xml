@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Receitas">
         <activity
+            android:name=".Escolha"
+            android:exported="false" />
+        <activity
+            android:name=".MeusIngredientes"
+            android:exported="false" />
+        <activity
             android:name=".tela2"
             android:exported="false" />
         <activity
