@@ -1,6 +1,7 @@
 package com.example.receitas;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,51 +37,58 @@ public class MeusIngredientes extends AppCompatActivity {
             txtResultado.setText("Gerando receitas...");
 
             new Thread(() -> {
-
                 String resposta = gemini.gerarReceitas(ingredientes);
-
-
                 Log.d("API_GEMINI", "Resposta da API: " + resposta);
 
                 runOnUiThread(() -> {
-
                     try {
                         JSONObject json = new JSONObject(resposta);
                         JSONArray candidates = json.getJSONArray("candidates");
-                        JSONObject first = candidates.getJSONObject(0);
+                        JSONObject firstCandidate = candidates.getJSONObject(0);
+                        
+                        StringBuilder fullText = new StringBuilder();
 
-                        String texto = "";
-
-
-                        if (first.has("output_text")) {
-                            texto = first.getString("output_text");
-                        }
-
-
-                        else if (first.has("content")) {
-                            JSONObject content = first.getJSONObject("content");
-
+                        if (firstCandidate.has("content")) {
+                            JSONObject content = firstCandidate.getJSONObject("content");
                             if (content.has("parts")) {
                                 JSONArray parts = content.getJSONArray("parts");
-
-                                if (parts.length() > 0 && parts.getJSONObject(0).has("text")) {
-                                    texto = parts.getJSONObject(0).getString("text");
+                                for (int i = 0; i < parts.length(); i++) {
+                                    JSONObject part = parts.getJSONObject(i);
+                                    if (part.has("text")) {
+                                        fullText.append(part.getString("text"));
+                                    }
                                 }
                             }
                         }
 
-                        if (texto.isEmpty()) {
-                            texto = "A API respondeu, mas não enviou texto reconhecido.";
+                        String textoFinal;
+                        if (fullText.length() > 0) {
+                            textoFinal = formatRecipeText(fullText.toString());
+                        } else {
+                            textoFinal = "A API respondeu, mas não enviou texto reconhecido.";
                         }
+                        
 
-                        txtResultado.setText(texto);
+                        txtResultado.setText(Html.fromHtml(textoFinal, Html.FROM_HTML_MODE_LEGACY));
 
                     } catch (Exception e) {
+                        Log.e("API_GEMINI_ERROR", "Erro ao interpretar resposta da API", e);
                         txtResultado.setText("Erro ao interpretar resposta da API: " + e.getMessage());
                     }
-
                 });
             }).start();
         });
+    }
+
+    private String formatRecipeText(String rawText) {
+        String formattedText = rawText.replaceAll("\\*\\*(.*?)\\*\\*", "<b>$1</b>");
+        
+
+        formattedText = formattedText.replaceAll("\n", "<br>");
+
+        formattedText = formattedText.replaceAll("\\*", "• ");
+        formattedText = formattedText.replaceAll("- ", "<br>• ");
+
+        return formattedText;
     }
 }
