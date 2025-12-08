@@ -16,53 +16,45 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Escolha extends AppCompatActivity {
+public class Recomendadas extends AppCompatActivity {
 
-    private static final String TAG = "Escolha";
-    private DatabaseReference mDatabase;
-
-    private RecyclerView rv;
-    private Adaptacao_receitas adapter;
-    private ArrayList<Receitas> listaReceitas = new ArrayList<>();
+    RecyclerView rv;
+    Adaptacao_receitas adapter;
+    ArrayList<Receitas> listaReceitas = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_escolha);
+        setContentView(R.layout.activity_recomendadas);
 
-        rv = findViewById(R.id.rvEscolha);
+        rv = findViewById(R.id.rvRecomendadas);
         rv.setLayoutManager(new LinearLayoutManager(this));
-
         adapter = new Adaptacao_receitas(this, listaReceitas);
         rv.setAdapter(adapter);
-
-        mDatabase = FirebaseDatabase
-                .getInstance("https://appreceitas-71bc5-default-rtdb.firebaseio.com/")
-                .getReference("receitas");
 
         carregarReceitas();
     }
 
     private void carregarReceitas() {
-        mDatabase.addValueEventListener(new ValueEventListener() {
+        DatabaseReference ref = FirebaseDatabase.getInstance()
+                .getReference("receitas");
+
+        ref.limitToFirst(5).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listaReceitas.clear();
 
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     Receitas r = ds.getValue(Receitas.class);
-
-                    if (r != null) {
-                        listaReceitas.add(r);
-                    }
+                    listaReceitas.add(r);
                 }
 
-                adapter.notifyDataSetChanged(); // Atualiza o RecyclerView
+                adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.e(TAG, "Erro Firebase", error.toException());
+                Log.e("FIREBASE", error.getMessage());
             }
         });
     }
