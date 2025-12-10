@@ -57,7 +57,7 @@ public class Escolha extends AppCompatActivity {
                     }
                 }
 
-                adapter.notifyDataSetChanged(); // Atualiza o RecyclerView
+                adapter.notifyDataSetChanged();
             }
 
             @Override
