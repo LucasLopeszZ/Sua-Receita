@@ -42,10 +42,18 @@ public class MeusIngredientes extends AppCompatActivity {
 
                 runOnUiThread(() -> {
                     try {
+
+
+                        if (!resposta.trim().startsWith("{")) {
+                            txtResultado.setText("Erro da API:\n" + resposta);
+                            return;
+                        }
+
+                        // Agora sim podemos converter
                         JSONObject json = new JSONObject(resposta);
                         JSONArray candidates = json.getJSONArray("candidates");
                         JSONObject firstCandidate = candidates.getJSONObject(0);
-                        
+
                         StringBuilder fullText = new StringBuilder();
 
                         if (firstCandidate.has("content")) {
@@ -67,7 +75,6 @@ public class MeusIngredientes extends AppCompatActivity {
                         } else {
                             textoFinal = "A API respondeu, mas não enviou texto reconhecido.";
                         }
-                        
 
                         txtResultado.setText(Html.fromHtml(textoFinal, Html.FROM_HTML_MODE_LEGACY));
 
@@ -82,7 +89,6 @@ public class MeusIngredientes extends AppCompatActivity {
 
     private String formatRecipeText(String rawText) {
         String formattedText = rawText.replaceAll("\\*\\*(.*?)\\*\\*", "<b>$1</b>");
-        
 
         formattedText = formattedText.replaceAll("\n", "<br>");
 
