@@ -10,36 +10,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        tools:context=".tela2">
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="34dp"
-            android:layout_height="36dp"
-            app:srcCompat="@mipmap/sopasss"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="250dp"
-            android:layout_marginTop="184dp"/>
-
-        <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="262dp"
-            android:layout_height="150dp"
-            app:srcCompat="@drawable/sem"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            android:layout_marginTop="80dp"/>
-
+        tools:context=".tela2"
+        android:background="@drawable/aab">
 
         <TextView
             android:id="@+id/textEscolha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Escolha uma Opção:"
+            android:text=":"
             android:textSize="25sp"
             android:textColor="@color/black"
             app:layout_constraintTop_toTopOf="parent"
@@ -98,4 +76,5 @@
         </HorizontalScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </ScrollView>
