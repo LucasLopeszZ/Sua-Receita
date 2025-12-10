@@ -8,7 +8,7 @@ import okhttp3.Response;
 
 public class GeminiApi {
 
-    private static final String API_KEY = "AIzaSyABfI6A-9YNgrCkItuGjEa5degGQO_oql0";
+    private static final String API_KEY = "AIzaSyD3pI8r-WnSWsfWO1ao1nYAxzcy4E_KYOI";
 
     private static final String ENDPOINT =
             "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + API_KEY;
