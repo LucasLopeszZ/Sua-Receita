@@ -49,7 +49,7 @@ public class MeusIngredientes extends AppCompatActivity {
                             return;
                         }
 
-                        // Agora sim podemos converter
+
                         JSONObject json = new JSONObject(resposta);
                         JSONArray candidates = json.getJSONArray("candidates");
                         JSONObject firstCandidate = candidates.getJSONObject(0);
