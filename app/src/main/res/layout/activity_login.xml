@@ -27,13 +27,15 @@
         android:layout_height="wrap_content"
         android:hint="E-mail"
         android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:inputType="textEmailAddress"
         android:padding="12dp"
         android:background="@android:drawable/editbox_background_normal"
         app:layout_constraintTop_toBottomOf="@id/txtTitulo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="40dp"
+        />
 
     <EditText
         android:id="@+id/edtSenha"
@@ -41,6 +43,7 @@
         android:layout_height="wrap_content"
         android:hint="Senha"
         android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:inputType="textPassword"
         android:padding="12dp"
         android:background="@android:drawable/editbox_background_normal"
